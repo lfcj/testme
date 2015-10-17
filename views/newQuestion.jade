@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1 Enter a new Question
+    form#formAddQuestion(name="addquestion",method="post",action="/newquestion")
+        input#inputQuestion(type="text", placeholder="Enter question", name="question")
+
+        input#inputOption1(type="text", placeholder="Option 1", name="option1")
+
+        input#inputOption2(type="text", placeholder="Option 2", name="option2")
+
+        input#inputOption3(type="text", placeholder="Option 3", name="option3")
+
+        input#inputOption4(type="text", placeholder="Option 4", name="option4")
+
+        input#answer(type="text", placeholder="answer", name="answer")
+
+
+        button#btnSubmit(type="submit" class="btn") submit
