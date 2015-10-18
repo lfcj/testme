@@ -3,16 +3,14 @@ extends layout
 block content
 	h1(class="title")=question.question
 	div
+		a#choose_option1(class="option")=question.option1
+		a#choose_option2(class="option")=question.option2
 
-		ol
-			h4(class="option")=question.option1
-		ol
-			h4(class="option")=question.option2
-		ol
-			h4(class="option")=question.option3
-		ol
-			h4(class="option")=question.option4
+		a#choose_option3(class="option")=question.option3
 
-		a(class="next btn") Next
+		a#choose_option4(class="option", name="option4")=question.option4
+
+		input#the_answer(type="hidden" name="answer" value=question.answer)
+		a(href="/nextquestion" class="next btn") Next
 		a(href="/newQuestion" class="newq btn") New Question
 	
