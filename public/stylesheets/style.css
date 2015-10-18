@@ -42,9 +42,13 @@ a {
 .btn:hover{
 	padding: 6px;	
 }
-input {
+.input-field {
 	display:block;
-	padding: 5px;
+	padding: 8px;
 	box-shadow: 3px;
 	float: center;
+}
+.container {
+	display: inline-block;
+    text-align: center;
 }
