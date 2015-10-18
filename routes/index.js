@@ -1,18 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 /* GET Hello World page. */
 router.get('/helloworld', function(req, res) {
     res.render('helloworld', { title: 'Hello, World!' });
 });
 
 /* GET questions and answers. */
-router.get('/testme', function(req, res){
+router.get('/', function(req, res){
 	var db = req.db;
 	var collection = db.get('usercollection');
 	collection.find({},{}, function(e, docs){
@@ -33,7 +28,6 @@ router.get('/newQuestion', function(req, res){
 router.post('/addquestion', function(req,res){
 	// Set our internal DB variable
 	var db = req.db;
-
 	// Get our form values
 	var question = req.body.question;
 	var option1 = req.body.option1;
@@ -43,6 +37,12 @@ router.post('/addquestion', function(req,res){
 	var answer = req.body.answer;
 	var category = req.body.category;
 
+	if(question==="" || option1==="" || option2=== "" || option3==="" || option4==="" || answer ==="" || category === ""){
+		res.redirect("newQuestion");
+		console.log("aquiiiiiii");
+		return;
+	}
+	
 	// Set our collection
 	var collection = db.get('usercollection');
 
@@ -62,9 +62,9 @@ router.post('/addquestion', function(req,res){
 		}
 		else {
 			// And forward to success page
-			res.redirect("testme")
+			res.redirect("/")
 		}
-	})
+	});
 });
 
 module.exports = router;
