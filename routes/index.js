@@ -24,6 +24,12 @@ router.get('/newQuestion', function(req, res){
 	res.render('newQuestion');
 });
 
+/* GET choose another question */
+router.get('/nextquestion', function(req, res){
+	console.log('req', req.body);
+	res.redirect('/')
+});
+
 /* POST to Add a new question*/
 router.post('/addquestion', function(req,res){
 	// Set our internal DB variable
@@ -39,7 +45,6 @@ router.post('/addquestion', function(req,res){
 
 	if(question==="" || option1==="" || option2=== "" || option3==="" || option4==="" || answer ==="" || category === ""){
 		res.redirect("newQuestion");
-		console.log("aquiiiiiii");
 		return;
 	}
 	
