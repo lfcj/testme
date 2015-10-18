@@ -16,8 +16,10 @@ router.get('/testme', function(req, res){
 	var db = req.db;
 	var collection = db.get('usercollection');
 	collection.find({},{}, function(e, docs){
-		res.render('questions', {
-			'question': docs
+		var amount_questions = docs.length;
+		var random_q = Math.floor(Math.random() * amount_questions)
+;		res.render('questions', {
+			'question': docs[random_q]
 		});
 	})
 });
@@ -26,10 +28,9 @@ router.get('/testme', function(req, res){
 router.get('/newQuestion', function(req, res){
 	res.render('newQuestion');
 });
-module.exports = router;
 
 /* POST to Add a new question*/
-router.post('/adduser', function(req,res){
+router.post('/addquestion', function(req,res){
 	// Set our internal DB variable
 	var db = req.db;
 
@@ -40,6 +41,7 @@ router.post('/adduser', function(req,res){
 	var option3 = req.body.option3;
 	var option4 = req.body.option4; 
 	var answer = req.body.answer;
+	var category = req.body.category;
 
 	// Set our collection
 	var collection = db.get('usercollection');
@@ -49,9 +51,10 @@ router.post('/adduser', function(req,res){
 		"question": question, 
 		"option1": option1, 
 		"option2": option2,
-		"option2": option3,
-		"option2": option4,
-		"answer": answer
+		"option3": option3,
+		"option4": option4,
+		"answer": answer,
+		"category": category
 	}, function(err, doc){
 		if (err) {
 			// If it failed, return error
@@ -59,10 +62,9 @@ router.post('/adduser', function(req,res){
 		}
 		else {
 			// And forward to success page
-			res.redirect("questions")
+			res.redirect("testme")
 		}
 	})
+});
 
-
-
-})
+module.exports = router;
