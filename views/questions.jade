@@ -1,21 +1,18 @@
 extends layout
+
 block content
-	h1(class="title"). 
-		Testme
+	h1(class="title")=question.question
 	div
-		each quest, q in question
-			div
 
-			p(class="question")= quest.question
-			ol
-				h4(class="option")=quest.option1
-			ol
-				h4(class="option")=quest.option2
-			ol
-				h4(class="option")=quest.option3
-			ol
-				h4(class="option")=quest.option4
+		ol
+			h4(class="option")=question.option1
+		ol
+			h4(class="option")=question.option2
+		ol
+			h4(class="option")=question.option3
+		ol
+			h4(class="option")=question.option4
 
-			a(class="next btn") Next
-			a(href="/newQuestion" class="newq btn") New Question
+		a(class="next btn") Next
+		a(href="/newQuestion" class="newq btn") New Question
 	
