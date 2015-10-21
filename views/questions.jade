@@ -3,8 +3,10 @@ extends layout
 block content
 	h1(class="title")=question.question
 	div
-		a#choose_option1(class="option")=question.option1
-		a#choose_option2(class="option")=question.option2
+		a#choose_option1(
+		class="option")=question.option1
+		a#choose_option2(
+		class="option")=question.option2
 
 		a#choose_option3(class="option")=question.option3
 

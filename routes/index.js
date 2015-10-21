@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var lastQuestion;
 /* GET Hello World page. */
 router.get('/helloworld', function(req, res) {
     res.render('helloworld', { title: 'Hello, World!' });
@@ -13,6 +13,10 @@ router.get('/', function(req, res){
 	collection.find({},{}, function(e, docs){
 		var amount_questions = docs.length;
 		var random_q = Math.floor(Math.random() * amount_questions)
+		if(random_q==lastQuestion){
+			random_q = (random_q+1)%amount_questions;
+		}
+		lastQuestion = random_q;
 ;		res.render('questions', {
 			'question': docs[random_q]
 		});
